@@ -99,7 +99,7 @@
   top: 0;
   right: 0;
   width: 100%;
-  background-color: #f1aedb;
+  background-color: #5f215c;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -118,7 +118,7 @@
 
 .menu-links li a {
   text-decoration: none;
-  color: #000;
+  color: #f0eeee;
   font-weight: 500;
   position: relative;
   padding: 5px 0;
@@ -132,12 +132,12 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: #2b647a;
+  background-color: #cf64b4;
   transition: width 0.3s ease;
 }
 
 .menu-links li a:hover {
-  color: #a8125d;
+  color: #385aa1;
 }
 
 .menu-links li a:hover::after {

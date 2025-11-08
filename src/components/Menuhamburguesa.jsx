@@ -17,10 +17,10 @@ function Menuhamburguesa() {
       </div>
 
       <ul className={abierto ? "menu-links visible" : "menu-links"}>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#juegos">Juegos</a></li>
-        <li><a href="#estadisticas">Estadísticas</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#Inicio">Inicio</a></li>
+        <li><a href="#Juegos">Juegos</a></li>
+        <li><a href="#Estadisticas">Estadísticas</a></li>
+        <li><a href="#Contacto">Contacto</a></li>
       </ul>
     </nav>
   );

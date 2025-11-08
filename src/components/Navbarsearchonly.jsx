@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Navbarsearchonly.css";
 
+
 export default function Navbarsearchonly() {
   const [searchTerm, setSearchTerm] = useState("");
   const [open, setOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function Navbarsearchonly() {
       <span
         className="navbar-search-icon"
         onClick={() => {
+          
           setOpen(!open);
           setErrorMsg(""); 
         }}

@@ -1,0 +1,36 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #703786;
+  padding: 10px 20px;
+  position: sticky; 
+  top: 0;          
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  top: 30px;
+  
+}
+
+
+.search-bar {
+  position: relative !important;
+  z-index: 1100 !important;
+}
+
+
+.main-content {
+  padding-top: 80px; 
+  min-height: 100vh; }
+
+
+.html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
