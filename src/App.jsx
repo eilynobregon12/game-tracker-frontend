@@ -1,19 +1,24 @@
 import React from "react";
-import Navbarsearchonly from "./components/Navbarsearchonly";
-import Menuhamburguesa from "./components/Menuhamburguesa";
-import "./App.css";
-import Inicio from "./components/inicio"; 
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Header from "./components/header";
+import Inicio from "./components/inicio";
+import Bibliotecajuegos from "./components/Bibliotecajuegos";
+
+
+
 
 function App() {
   return (
-    <div>
-      <div className="header-container">
-        <Navbarsearchonly />
-        <Menuhamburguesa />
-      </div>
-
-      <Inicio />
-    </div>
+    <Router>
+      <Header />
+      
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/inicio" element={<Inicio />} />
+          <Route path="/juegos" element={<Bibliotecajuegos />} />
+        </Routes>
+     
+    </Router>
   );
 }
 

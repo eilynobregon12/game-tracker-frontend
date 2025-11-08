@@ -1,0 +1,162 @@
+/* ====== CONTENEDOR PRINCIPAL ====== */
+.header {
+  width: 100%;
+  background-color: #0d0b33;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 22px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 60px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ====== IZQUIERDA (LOGO + LUPA) ====== */
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.search-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.search-btn:hover {
+  transform: scale(1.2);
+}
+
+/* ====== DERECHA (LINKS + MENÚ HAMBURGUESA) ====== */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* LINKS EN MODO ESCRITORIO */
+.nav-links {
+  display: flex;
+  gap: 40px;
+  margin-right: 40px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #ff79c6;
+  transform: scale(1.05);
+}
+
+/* BOTÓN MENÚ */
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-right: 40px;
+
+}
+
+.menu-btn:hover {
+  transform: scale(1.2);
+}
+
+/* ====== BARRA DE BÚSQUEDA ====== */
+.search-bar {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 6px 8px;
+  width: 180px;
+  font-size: 0.95rem;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 70%;
+    max-width: 260px;
+    background: linear-gradient(135deg, #5e2b97, #9d50bb);
+    backdrop-filter: blur(6px);
+    padding: 25px 20px;
+    border-radius: 0 0 0 20px;
+    z-index: 1001;
+    animation: slideIn 0.25s ease forwards;
+    box-shadow: -3px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-links a {
+    color: #fff;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    text-align: right;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .menu-btn {
+    display: inline;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* ====== ESCRITORIO ====== */
+@media (min-width: 769px) {
+  .menu-btn {
+    display: none;
+  }
+}
