@@ -23,8 +23,8 @@ export default function Header() {
       {/* DERECHA */}
       <div className="right-section">
         <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
-          <Link to="/juegos" onClick={() => setMenuOpen(false)}>Juegos</Link>
+          <Link to="/inicio" onClick={() => setMenuOpen(false)}>Inicio</Link>
+          <Link to="/bibliotecajuegos" onClick={() => setMenuOpen(false)}>Juegos</Link>
           <Link to="/estadisticas" onClick={() => setMenuOpen(false)}>Estadísticas</Link>
           <Link to="/contacto" onClick={() => setMenuOpen(false)}>Contacto</Link>
         </nav>
