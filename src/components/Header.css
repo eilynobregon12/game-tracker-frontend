@@ -1,159 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
 .header {
+  position: fixed;
+  top: 0;
   width: 100%;
-  background-color: #0d0b33;
-  color: white;
+  height: 70px;
+  background: linear-gradient(90deg, #2e026d, #5a189a);
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 22px;
-  position: fixed;
-  top: 0;
-  left: 0;
+  padding: 0 40px;
   z-index: 1000;
-  height: 60px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 
 .left-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
+  position: relative;
 }
 
 .logo {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  cursor: pointer;
-  user-select: none;
+  color: #fff;
 }
 
 .search-btn {
-  background: transparent;
+  background: none;
   border: none;
-  color: white;
   font-size: 1.4rem;
   cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.search-btn:hover {
-  transform: scale(1.2);
+  color: #fff;
 }
 
 .right-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
+  margin-right: 50px;
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
-  margin-right: 40px;
+  gap: 25px;
+  transition: all 0.3s ease;
 }
 
 .nav-links a {
-  color: white;
   text-decoration: none;
+  color: #fff;
   font-weight: 500;
-  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #ff79c6;
-  transform: scale(1.05);
+  color: #c77dff;
 }
-
 
 .menu-btn {
-  background: transparent;
+  display: none;
+  background: none;
   border: none;
-  color: white;
   font-size: 1.6rem;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  margin-right: 40px;
-
+  color: #fff;
 }
-
-.menu-btn:hover {
-  transform: scale(1.2);
-}
-
 
 .search-bar {
   position: absolute;
   top: 60px;
-  left: 20px;
-  background: white;
-  padding: 8px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  padding: 6px 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  gap: 10px;
 }
 
 .search-bar input {
   border: none;
   outline: none;
   padding: 6px 8px;
+  font-size: 1rem;
   width: 180px;
-  font-size: 0.95rem;
+  color: #000;
+}
+
+.search-bar button {
+  background-color: #5a189a;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.search-bar button:hover {
+  background-color: #2e026d;
 }
 
 @media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+  }
+
   .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: linear-gradient(90deg, #2e026d, #5a189a);
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
     display: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   }
 
   .nav-links.open {
     display: flex;
-    flex-direction: column;
-    position: absolute;
+  }
+
+  .right-section {
+    margin-right: 0;
+  }
+
+  .search-bar {
     top: 60px;
-    right: 0;
-    width: 70%;
-    max-width: 260px;
-    background: linear-gradient(135deg, #5e2b97, #9d50bb);
-    backdrop-filter: blur(6px);
-    padding: 25px 20px;
-    border-radius: 0 0 0 20px;
-    z-index: 1001;
-    animation: slideIn 0.25s ease forwards;
-    box-shadow: -3px 5px 10px rgba(0, 0, 0, 0.3);
-  }
-
-  .nav-links a {
-    color: #fff;
-    padding: 12px 0;
-    font-size: 1.1rem;
-    text-align: right;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .nav-links a:last-child {
-    border-bottom: none;
-  }
-
-  .menu-btn {
-    display: inline;
-  }
-
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-}
-
-
-@media (min-width: 769px) {
-  .menu-btn {
-    display: none;
+    left: 0;
   }
 }

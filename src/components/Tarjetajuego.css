@@ -1,0 +1,23 @@
+.boton-eliminar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.boton-eliminar:hover {
+  background: rgb(200, 0, 0);
+  transform: scale(1.1);
+}
