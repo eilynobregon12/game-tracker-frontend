@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Inicio.css";
-import fondo1 from "./assets/fondo1.jpg";
 import fondo2 from "./assets/fondo2.jpg";
 import fondo3 from "./assets/fondo3.jpg";
 import fondo4 from "./assets/fondo4.jpg";
@@ -13,16 +13,16 @@ import fondo10 from "./assets/fondo10.jpg";
 import fondo11 from "./assets/fondo11.jpg";
 
 function Inicio() {
-  const imagenes = [
-    fondo1, fondo2, fondo3, fondo4, fondo5,
+  const navigate = useNavigate();
+
+  const imagenes = [fondo2, fondo3, fondo4, fondo5,
     fondo6, fondo7, fondo8, fondo9, fondo10, fondo11
   ];
 
-  // Añadimos el primer y último duplicados para efecto infinito
   const imagenesConClones = [
-    imagenes[imagenes.length - 1], // clon del último
+    imagenes[imagenes.length - 1],
     ...imagenes,
-    imagenes[0], // clon del primero
+    imagenes[0],
   ];
 
   const [indice, setIndice] = useState(1);
@@ -37,14 +37,16 @@ function Inicio() {
     setIndice((prev) => prev - 1);
   };
 
+  const manejarClick = () => {
+    navigate("/bibliotecajuegos");
+  };
+
   useEffect(() => {
     const handleTransitionEnd = () => {
       if (indice === imagenesConClones.length - 1) {
-        // pasamos del clon del primero → al primero
         setTransicion(false);
         setIndice(1);
       } else if (indice === 0) {
-        // pasamos del clon del último → al último
         setTransicion(false);
         setIndice(imagenes.length);
       }
@@ -52,13 +54,11 @@ function Inicio() {
 
     const slider = sliderRef.current;
     slider.addEventListener("transitionend", handleTransitionEnd);
-
     return () => slider.removeEventListener("transitionend", handleTransitionEnd);
   }, [indice, imagenes.length, imagenesConClones.length]);
 
   useEffect(() => {
     if (!transicion) {
-      // después de quitar transición para el salto invisible, la reactivamos
       setTimeout(() => setTransicion(true), 20);
     }
   }, [transicion]);
@@ -85,7 +85,7 @@ function Inicio() {
       <div className="inicio-overlay">
         <div className="contenedor-texto">
           <h1 className="titulo">LockerGames</h1>
-          <button className="empezar">Empezar</button>
+          <button className="empezar" onClick={manejarClick}>Empezar</button>
         </div>
 
         <button className="flecha izquierda" onClick={anterior}>❮</button>
