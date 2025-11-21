@@ -1,0 +1,94 @@
+
+.resenas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif; 
+}
+
+
+.resena-container {
+  background-color: #bc77eb; 
+  padding: 15px;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+
+.resena-container strong {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+.resena-estrellas {
+  margin-top: 5px;
+  font-weight: bold;
+  color: #ffd700; 
+}
+
+.resena-container button {
+  margin-right: 8px;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #fff;
+  color: #8a2be2;
+  transition: 0.2s;
+}
+
+.resena-container button:hover {
+  background-color: #f0f0f0;
+}
+
+
+.form-resena {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #8a2be2;
+  padding: 15px;
+  border-radius: 12px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+
+.form-resena input,
+.form-resena textarea {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+
+.label-estrellas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.form-resena button {
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  color: #8a2be2;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.form-resena button:hover {
+  background-color: #f0f0f0;
+}
