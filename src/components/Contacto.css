@@ -1,0 +1,52 @@
+.contacto-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4b0082, #8a2be2);
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.contacto-creadores {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+
+.contacto-card {
+  background: #3b2a57;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.contacto-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+
+.contacto-link {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contacto-link:hover {
+  text-decoration: underline;
+}
+
+
+.contacto-footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #ddd;
+}
