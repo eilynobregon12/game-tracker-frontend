@@ -145,3 +145,33 @@ body {
     left: 0;
   }
 }
+
+.error-busqueda {
+  color: #3d1563; 
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: left;
+}
+
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;        
+  margin-left: 20px; 
+}
+
+.auth-buttons button {
+  background-color: #7735aa;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.auth-buttons button:hover {
+  background-color: #904bd6;
+}

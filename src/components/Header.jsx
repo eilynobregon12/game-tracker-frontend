@@ -1,43 +1,49 @@
-import React, { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { FaSearch } from "react-icons/fa"
-import { juegosBase, obtenerJuegosGuardados, normalizar } from "./Usejuegos"
-import "./Header.css"
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
+import Usejuego from "./Usejuego";
+import "./Header.css";
 
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [searchText, setSearchText] = useState("")
-  const navigate = useNavigate()
+export default function Header({ setFiltro }) {
+  const { juegos } = Usejuego(); 
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [errorBusqueda, setErrorBusqueda] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    const query = searchText.trim().toLowerCase()
-    if (!query) return
+    const query = searchText.trim().toLowerCase();
+    if (!query) return;
 
-    const guardados = obtenerJuegosGuardados()
-    const todos = [...juegosBase, ...guardados]
-
-    const juegoEncontrado = todos.find((j) =>
-      normalizar(j.nombre).includes(normalizar(query))
-    )
+    const juegoEncontrado = juegos.find(j =>
+      j.nombre.toLowerCase().includes(query)
+    );
 
     if (juegoEncontrado) {
-      navigate(`/juego/${normalizar(juegoEncontrado.nombre)}`)
+      navigate(`/juego/${juegoEncontrado._id}`);
+      setErrorBusqueda(""); 
+      setSearchOpen(false); 
     } else {
-      navigate("/juego/no-encontrado")
+      setErrorBusqueda("Juego no encontrado"); 
     }
 
-    setSearchOpen(false)
-    setSearchText("")
-  }
+    if (setFiltro) setFiltro(query);
+    setSearchText("");
+  };
 
   return (
     <header className="header">
       <div className="left-section">
         <div className="logo">LockerGames</div>
+
         <button
           className="search-btn"
-          onClick={() => setSearchOpen(!searchOpen)}
+          onClick={() => {
+            setSearchOpen(!searchOpen);
+            if (!searchOpen) setErrorBusqueda(""); 
+          }}
           title="Buscar"
         >
           <FaSearch />
@@ -53,6 +59,7 @@ export default function Header() {
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
             <button onClick={handleSearch}>Buscar</button>
+            {errorBusqueda && <p className="error-busqueda">{errorBusqueda}</p>}
           </div>
         )}
       </div>
@@ -61,10 +68,11 @@ export default function Header() {
         <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
           <Link to="/inicio" onClick={() => setMenuOpen(false)}>Inicio</Link>
           <Link to="/bibliotecajuegos" onClick={() => setMenuOpen(false)}>Juegos</Link>
-          <Link to="/Estadisticaspersonales" onClick={() => setMenuOpen(false)}>Estadísticas</Link>
+          <Link to="/estadisticaspersonales" onClick={() => setMenuOpen(false)}>Estadísticas</Link>
           <Link to="/contacto" onClick={() => setMenuOpen(false)}>Contacto</Link>
         </nav>
 
+       
         <button
           className="menu-btn"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -74,5 +82,5 @@ export default function Header() {
         </button>
       </div>
     </header>
-  )
+  );
 }
