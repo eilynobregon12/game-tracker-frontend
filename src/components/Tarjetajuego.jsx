@@ -1,39 +1,18 @@
-import "./Tarjetajuego.css"
+import { Link } from "react-router-dom";
 
-export default function TarjetaJuego({ juego, onClick, onEliminar }) {
-  const normalizar = (texto) =>
-    texto
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "-")
-
-  const manejarClick = () => {
-    const nombreNormalizado = normalizar(juego.nombre)
-    onClick(nombreNormalizado)
-  }
-
+function TarjetaJuego({ juego }) {
   return (
-    <div
-      className="tarjeta-juego"
-      style={{ backgroundImage: `url(${juego.imagen})` }}
-      onClick={manejarClick}
-    >
-      {onEliminar && (
-        <button
-          className="boton-eliminar"
-          onClick={(e) => {
-            e.stopPropagation()
-            onEliminar()
-          }}
-        >
-          ✖
-        </button>
-      )}
-      <div className="info-juego">
-        <h3>{juego.nombre}</h3>
-        <p>{juego.categoria}</p>
-      </div>
+    <div className="tarjeta-juego">
+      <img src={juego.imagen} alt={juego.nombre} />
+      <h3>{juego.nombre}</h3>
+      <p>{juego.descripcion}</p>
+      <p><strong>Categoría:</strong> {juego.categoria}</p>
+
+      <Link to={`/juego/${juego._id}`} className="btn-detalle">
+        Ver detalles
+      </Link>
     </div>
-  )
+  );
 }
+
+export default TarjetaJuego;

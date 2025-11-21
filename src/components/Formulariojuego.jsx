@@ -1,67 +1,126 @@
 import { useState } from "react"
-import "./Formulariojuego.css"
+import { useNavigate } from "react-router-dom"
+import "./FormularioJuego.css"
 
-function Formulariojuego({ onAgregar }) {
-  const [nombre, setNombre] = useState("")
-  const [categoria, setCategoria] = useState("")
-  const [descripcion, setDescripcion] = useState("")
-  const [imagen, setImagen] = useState("")
+export default function FormularioJuego() {
+  const navigate = useNavigate()
 
-  const normalizar = (texto) => {
-    return texto
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "-")
+  const [formData, setFormData] = useState({
+    nombre: "",
+    descripcion: "",
+    urlImagen: "",
+    categoria: "",
+    historia: "",
+    estado: "",
+    horasJugadas: ""
+  })
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const manejarEnvio = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!nombre || !categoria) return
-    const nuevoJuego = {
-      nombre,
-      nombreNormalizado: normalizar(nombre),
-      categoria,
-      descripcion,
-      imagen: imagen || "https://via.placeholder.com/300",
+    try {
+      const juegoEnviar = {
+        ...formData,
+        imagen: formData.urlImagen,
+        horasJugadas: Number(formData.horasJugadas),
+        creadoPorUsuario: true
+      }
+
+      await fetch("http://localhost:5000/api/juego", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(juegoEnviar)
+      })
+
+      navigate("/bibliotecajuegos")
+    } catch (error) {
+      console.error("Error creando juego:", error)
     }
-    onAgregar(nuevoJuego)
-    setNombre("")
-    setCategoria("")
-    setDescripcion("")
-    setImagen("")
+  }
+
+  const handleCancel = () => {
+    navigate("/bibliotecajuegos")
   }
 
   return (
-    <form onSubmit={manejarEnvio} className="formulario-juego">
-      <input
-        type="text"
-        placeholder="Nombre del juego"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Categoría"
-        value={categoria}
-        onChange={(e) => setCategoria(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="URL de imagen"
-        value={imagen}
-        onChange={(e) => setImagen(e.target.value)}
-      />
-      <textarea
-        placeholder="Descripción del juego"
-        value={descripcion}
-        onChange={(e) => setDescripcion(e.target.value)}
-      />
-      <button type="submit">Agregar Juego</button>
-    </form>
+    <div className="fondo-form">
+      <div className="formulario-juego-card">
+        <h2 className="titulo-form">Crear Juego</h2>
+
+        <form onSubmit={handleSubmit} className="formulario-juego">
+
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre del juego"
+            value={formData.nombre}
+            onChange={handleChange}
+            required
+          />
+
+          <textarea
+            name="descripcion"
+            placeholder="Descripción"
+            value={formData.descripcion}
+            onChange={handleChange}
+            required
+          ></textarea>
+
+          <textarea
+            name="historia"
+            placeholder="Historia del juego"
+            value={formData.historia}
+            onChange={handleChange}
+          ></textarea>
+
+          <input
+            type="text"
+            name="urlImagen"
+            placeholder="URL de la imagen"
+            value={formData.urlImagen}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="text"
+            name="categoria"
+            placeholder="Categoría"
+            value={formData.categoria}
+            onChange={handleChange}
+            required
+          />
+
+          <select
+            name="estado"
+            value={formData.estado}
+            onChange={handleChange}
+          >
+            <option value="">Selecciona estado</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="jugando">Jugando</option>
+            <option value="completado">Completado</option>
+          </select>
+
+          <input
+            type="number"
+            name="horasJugadas"
+            placeholder="Horas jugadas"
+            value={formData.horasJugadas}
+            onChange={handleChange}
+            min="0"
+          />
+
+          <button type="submit" className="btn-crear">Crear</button>
+          <button type="button" className="btn-cancelar" onClick={handleCancel}>
+            Cancelar
+          </button>
+
+        </form>
+      </div>
+    </div>
   )
 }
-
-export default Formulariojuego

@@ -1,0 +1,83 @@
+.editar-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4b0082, #8e44ad);
+  padding: 20px;
+}
+
+.editar-card {
+  background: rgba(176, 105, 216, 0.25);
+  backdrop-filter: blur(6px);
+  width: 90%;
+  max-width: 450px;
+  padding: 25px;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.editar-card h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.editar-card label {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.editar-card input,
+.editar-card select {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 15px;
+}
+
+.btn-guardar {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #6c5ce7;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-guardar:hover {
+  background-color: #7d6fff;
+}
+
+.cargando {
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.editar-card select {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+}
+.editar-card select option {
+  background: #4b0082; 
+  color: white;
+}
+
+
+.editar-card select:focus {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  outline: none;
+}

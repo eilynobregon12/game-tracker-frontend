@@ -1,49 +1,77 @@
-.formulario-juego {
+
+.fondo-form {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background: rgba(40, 20, 80, 0.8);
-  border-radius: 20px;
-  padding: 20px;
-  width: 300px;
-  gap: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #6a0dad, #b19cd9); 
+  font-family: 'Arial', sans-serif;
 }
 
-.formulario-juego:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(80, 40, 200, 0.6);
+.formulario-juego-card {
+  background-color: #8a2be2; 
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  width: 400px;
+  max-width: 90%;
+  color: #fff;
+}
+
+.titulo-form {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
 }
 
 .formulario-juego input,
-.formulario-juego textarea {
+.formulario-juego textarea,
+.formulario-juego select {
   width: 100%;
-  padding: 10px;
+  padding: 10px 12px;
+  margin-bottom: 15px;
   border: none;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.85);
-  font-size: 14px;
-  outline: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.formulario-juego input,
+.formulario-juego select {
+  height: 40px;
 }
 
 .formulario-juego textarea {
-  resize: none;
-  height: 70px;
+  min-height: 80px;
+  resize: vertical;
 }
 
-.formulario-juego button {
-  background: linear-gradient(90deg, #6a00ff, #a044ff);
-  color: white;
+.btn-crear,
+.btn-cancelar {
+  width: 48%;
+  padding: 10px 0;
+  margin-top: 10px;
+  font-size: 1rem;
   border: none;
-  border-radius: 10px;
-  padding: 10px 15px;
-  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-.formulario-juego button:hover {
-  background: linear-gradient(90deg, #5200cc, #7b2fff);
-  transform: scale(1.05);
+.btn-crear {
+  background-color: #4b0082;
+  color: #fff;
+  margin-right: 4%;
+}
+
+.btn-crear:hover {
+  background-color: #37006b;
+}
+
+.btn-cancelar {
+  background-color: #d8bfd8;
+  color: #4b0082;
+}
+
+.btn-cancelar:hover {
+  background-color: #c299c2;
 }
