@@ -1,35 +1,47 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Header from "./components/header"
-import Inicio from "./components/Inicio"
-import Bibliotecajuegos from "./components/Bibliotecajuegos"
-import Estadisticaspersonales from "./components/Estadisticaspersonales"
-import Juegodetalle from "./components/Juegodetalle"
-import Registro from "./components/Registro"
-import Login from "./components/login"
-import Formulariojuego from "./components/Formulariojuego"
-import Tarjetajuego from "./components/Tarjetajuego"
-import { useState } from "react"
-import "./App.css"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
+import Header from "./components/Header";
+import Inicio from "./components/Inicio";
+import Bibliotecajuegos from "./components/Bibliotecajuegos";
+import Estadisticaspersonales from "./components/Estadisticaspersonales";
+import Juegodetalle from "./components/Juegodetalle";
+import Formulariojuego from "./components/Formulariojuego";
+import Tarjetajuego from "./components/Tarjetajuego";
+import Editarjuego from "./components/Editarjuego";
+import Resenajuego from "./components/Resenajuego";
+import Formularioresena from "./components/Formularioresena";
+import Contacto from "./components/Contacto";
+import "./App.css";
+
 
 function App() {
-  const [filtro, setFiltro] = useState("")
+  const [filtro, setFiltro] = useState("");
+
   return (
+    
     <Router>
       <Header setFiltro={setFiltro} />
       <Routes>
-        <Route path="/registro" element={<Registro />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Inicio />} />
         <Route path="/inicio" element={<Inicio />} />
-        <Route path="/bibliotecajuegos" element={<Bibliotecajuegos filtro={filtro} />} />
+        <Route path="/bibliotecajuegos" element={<Bibliotecajuegos filtro={filtro} setFiltro={setFiltro} />} />
         <Route path="/estadisticaspersonales" element={<Estadisticaspersonales />} />
-        <Route path="/juego/:nombre" element={<Juegodetalle />} />
-        <Route path="/formulariojuego" element={<Formulariojuego />} />
+        <Route path="/Contacto" element={<Contacto/>}/>
+        <Route path="/juego/:id" element={<Juegodetalle />} />
+        <Route path="/crear" element={<Formulariojuego />} />
         <Route path="/tarjetajuego" element={<Tarjetajuego />} />
+        <Route path="/editar/:id" element={<Editarjuego />} />
+        <Route path="/resenas/:juegoId" element={<Resenajuego />} />
+        <Route path="/formularioresena/:juegoId" element={<Formularioresena />} />
+        <Route path="/estadisticaspersonales" element={<Estadisticaspersonales />} />
+
       
+    
       </Routes>
     </Router>
-  )
+  
+  );
 }
 
-export default App
+export default App;

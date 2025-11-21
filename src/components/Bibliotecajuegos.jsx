@@ -1,77 +1,44 @@
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { FaGamepad } from "react-icons/fa"
-import Formulariojuego from "./Formulariojuego"
-import Tarjetajuego from "./Tarjetajuego"
-import { juegosBase, obtenerJuegosGuardados, guardarJuegos, normalizar } from "./Usejuegos"
-import "./Bibliotecajuegos.css"
+live simport { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getJuegos } from "./services/juegoService";
+import Tarjetajuego from "./Tarjetajuego";
+import "./Bibliotecajuegos.css";
 
-export default function Bibliotecajuegos({ filtro = "" }) {
-  const navigate = useNavigate()
-  const [juegos, setJuegos] = useState([])
-
-  const cargarJuegos = () => {
-    const guardados = obtenerJuegosGuardados()
-    const combinados = [...juegosBase, ...guardados]
-    const sinDuplicados = combinados.filter(
-      (j, index, self) => index === self.findIndex((x) => x.id === j.id)
-    )
-    setJuegos(sinDuplicados)
-  }
+export default function Bibliotecajuegos({ filtro, setFiltro }) {
+  const [juegos, setJuegos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    cargarJuegos()
-  }, [])
+    async function cargar() {
+      const data = await getJuegos();   
+      setJuegos(data);                  
+    }
+    cargar();
+  }, []);
 
-  const agregarJuego = (nuevo) => {
-    const guardados = obtenerJuegosGuardados()
-    const nuevoJuego = { ...nuevo, id: Date.now() }
-    const actualizados = [...guardados, nuevoJuego]
-    guardarJuegos(actualizados)
-    cargarJuegos()
-  }
+  useEffect(() => {
+    if (setFiltro) setFiltro("");
+  }, [setFiltro]);
 
-  const eliminarJuego = (id) => {
-    const guardados = obtenerJuegosGuardados()
-    const actualizados = guardados.filter((j) => j.id !== id)
-    guardarJuegos(actualizados)
-    cargarJuegos()
-  }
-
-  const abrirDetalle = (juego) => {
-    navigate(`/juego/${normalizar(juego.nombre)}`)
-  }
-
-  const juegosFiltrados = juegos.filter((j) =>
+  const filtrados = juegos.filter((j) =>
     j.nombre.toLowerCase().includes(filtro.toLowerCase())
-  )
+  );
 
   return (
     <div className="biblioteca-container">
-      <h2 className="titulo-biblioteca">
-        <FaGamepad className="icono-juego" /> biblioteca de juegos
-      </h2>
-      <div className="juegos-grid">
-        {juegosFiltrados.length > 0 ? (
-          juegosFiltrados.map((j) => (
-            <Tarjetajuego
-              key={`${j.id}-${j.nombre}`}
-              juego={j}
-              onClick={() => abrirDetalle(j)}
-              onEliminar={
-                juegosBase.some((base) => base.id === j.id)
-                  ? null
-                  : () => eliminarJuego(j.id)
-              }
-            />
-          ))
-        ) : (
-          <p className="no-encontrado">juego no encontrado 😢</p>
-        )}
-        <div className="tarjeta-agregar">
-          <Formulariojuego onAgregar={agregarJuego} />
-        </div>
+      <h1>Mi Biblioteca</h1>
+
+      <div className="biblioteca-grid">
+        {filtrados.map((j) => (
+          <Tarjetajuego key={j._id} juego={j} />
+        ))}
+      </div>
+
+      <div className="agregar-boton-container">
+        <button className="agregar-boton" onClick={() => navigate("/crear")}>
+          Agregar Juego
+        </button>
       </div>
     </div>
-  )
+  );
 }
