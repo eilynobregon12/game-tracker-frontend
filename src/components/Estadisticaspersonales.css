@@ -1,0 +1,57 @@
+.estadisticas-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #5a189a, #2e026d);
+  padding: 30px;
+  color: #fff;
+  font-family: sans-serif;
+  margin-top: 30px;
+}
+
+.estadisticas-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.estadisticas-form input,
+.estadisticas-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  flex: 1;
+  min-width: 150px;
+}
+
+.estadisticas-form button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #5a189a;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.estadisticas-form button:hover {
+  background-color: #ddd;
+}
+
+.registro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.tarjeta-juego {
+  background-color: #fff;
+  color: #2e026d;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.tarjeta-juego p {
+  margin: 5px 0;
+}
